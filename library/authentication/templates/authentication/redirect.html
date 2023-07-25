@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Log in page</title>
+
+</head>
+<body>
+<h1>Login sucsesfully </h1>
+<ul>
+  {% for x in mymembers %}
+    <li>{{ x.email }} {{ x.password }} {{ x.role }}</li>
+  {% endfor %}
+</ul>
+<p> Return to <a href="/home"> Home page</a>.</p>
+</body>
+</html>

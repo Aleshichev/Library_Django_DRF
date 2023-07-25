@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Books</title>
+  </head>
+  <body>
+    <p><a href="/home/out"> Log out</a></p>
+    <p><a href="/home"> Home </a></p>
+    {% if user != None %}
+      <h1>Information about User id = {{user_id}} books:</h1>
+
+      {% if books %}
+
+        {% for book in books %}
+        <p> - Title: {{book.name}} Description: {{book.description}}</p>
+        {% endfor %}
+      {%  else %}
+      <p> User doesn't have any books</p>
+      {% endif %}
+    {% else %}
+    <h1>No User</h1>
+    {% endif %}
+
+  </body>
+</html>

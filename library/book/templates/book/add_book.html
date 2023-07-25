@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{book.name}}</title>
+</head>
+<body>
+<p> <a href="/home/out"> Log out</a></p>
+<p> <a href="/home"> Home </a></p>
+<h1>Create new book:</h1>
+
+
+{% if request.user.role == 1 %}
+<form method="post" action="{% url 'book:add_book' %}">
+  {% csrf_token %}
+  {{ form.non_field_errors }}
+  <p>{{form.name.label_tag}} {{form.name}}</p>
+  {{form.name.errors}}
+  <p>{{form.description.label_tag}} {{form.description}}</p>
+  {{form.description.errors}}
+  <p>{{form.count.label_tag}} {{form.count}}</p>
+  <p>{{form.authors.label_tag}} {{form.authors}}</p>
+  <p>{{form.year_of_publication.label_tag}} {{form.year_of_publication}}</p>
+  {{form.year_of_publication.errors}}
+  <p>{{form.date_of_issue.label_tag}} {{form.date_of_issue}}</p>
+  {{form.date_of_issue.errors}}
+
+   <button type="submit">CREATE</button>
+</form>
+{% endif %}
+
+<p> Return back to the <a href="/book">book</a> list.</p>
+
+</body>
+</html>

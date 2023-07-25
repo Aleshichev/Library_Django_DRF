@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{book.name}}</title>
+</head>
+<body>
+<p> <a href="/home/out"> Log out</a></p>
+<p> <a href="/home"> Home </a></p>
+<h1>Information about book:</h1>
+<p>Name: {{book.name}}</p>
+<p>Author: {% for elem in book_authors %}
+            {{elem.name}} {{elem.surname}} {{elem.patronymic}},
+            {% endfor %} 
+{% if request.user.role == 1 %}
+  <form action="{% url 'book:book_detail' book.id %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">ADD</button>
+  </form>
+{% endif %}
+</p>
+<p>Count: {{book.count}}</p>
+<p>Descriptions: </br>
+{{book.description}}</p>
+</br>
+
+<p> Return back to the <a href="/book">book</a> list.</p>
+
+</body>
+</html>

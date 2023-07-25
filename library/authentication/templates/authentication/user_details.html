@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Informathion about {{user.first_name}} {{user.last_name}}</h2>
+<body>
+    <p>Id: {{user.id}}</p>
+    <p>Role: {% if user.role is 0 %} visitor {% else %} librarian {% endif %}</p>
+    <p>Orders: {{ orders|length }} </p>
+    <p>First_name: {{user.first_name}}</p>
+    <p>Last_name: {{user.last_name}}</p>
+    <p>Middle_name: {{user.middle_name}}</p>
+    <p>Email: {{user.email}}</p>
+    <p>Created_at: {{user.created_at}}</p>
+    <p>Updated_at: {{user.updated_at}}</p>
+</body>
+{% endblock %}

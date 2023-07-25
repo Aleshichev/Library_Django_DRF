@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>All Users:</h2>
+
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Last Name</th>
+        <th>First Name</th>
+        <th>Middle Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Details</th>
+    </tr>
+
+    {% for user in users %}
+    <tr>       
+        <th>{{ user.id }}</th>
+        <td>{{user.last_name}}</td>
+        <td>{{user.first_name}}</td>
+        <td>{{user.middle_name}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.get_role_name}}</td>
+        <td><a href="{% url 'authentication:special_user' user.id %}">Details</a></td>
+    </tr>
+    {% endfor %}
+</table>
+<form>
+    <button formaction="{% url 'index' %}">Back</button>
+</form>
+{% endblock %}
+
+
+
+
+
+
+

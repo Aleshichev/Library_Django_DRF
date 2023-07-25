@@ -1,0 +1,21 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Author_details</title>
+</head>
+<body>
+<h1>Information about {{author.surname}} {{author.name}} {{author.patronymic}} books:</h1>
+    {% for book in books %}
+        <li>Title: {{book.name}}  </li>
+        <p>Description: {{book.description}}</p>
+    {% empty %}
+        No books yet.<br>
+        <form action="{% url 'author:remove_author' author.id %}" method="post">
+            {% csrf_token %}
+            <button>Remove author</button>
+        </form>
+    {% endfor %}
+</body>
+</html>

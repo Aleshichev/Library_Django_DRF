@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Author</title>
+</head>
+<body>
+<H1>THIS IS AUTHOR APP PAGE! CONGRATULATIONS!</H1>
+<h2>Authors:</h2>
+<ul>
+
+{% for author in authors %}
+    <li>{{ author.surname }} {{ author.name }} {{ author.patronymic }} -
+        <a href="{% url 'author:details' author.id %}"> Details </a></li>
+{% empty %}
+    <li>No authors yet.</li>
+{% endfor %}
+</ul>
+<button onclick="location.href = '{% url 'authentication:user_page' %}'">Back</button>
+<form action="{% url 'author:add_author' %}">
+    <button>Add Author</button>
+</form>
+
+</body>
+</html>

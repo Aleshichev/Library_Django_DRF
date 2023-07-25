@@ -1,0 +1,11 @@
+{% extends 'base_order.html' %}
+{% block title %}Close order{% endblock %}
+
+{% block content %}
+
+<form method="POST" action="{% url 'close_order' order_id=order.id %}">
+    {% csrf_token %}
+    <button type="submit">Close Order</button>
+  </form>
+
+{% endblock %}

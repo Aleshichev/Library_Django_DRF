@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Library</title>
+</head>
+<body>
+<p> <a href="/home/out"> Log out</a>.</p>
+<p> <a href="/home"> Home </a></p>
+<h1>This is a list of avaliable books:</h1>
+<form action="{% url 'book:book_main_page' %}", method = "post", target = "_self">
+  {% csrf_token %}
+  {{filter_form.value.errors}}
+  <p>{{filter_form.parameter.label_tag}} {{filter_form.parameter}} Value: {{filter_form.value}} <button type="submit">Filter</button> </p>
+  
+</form><br>
+{% if request.user.role == 1 %}
+    <form action="{% url 'book:book_add_page' %}", method = "post", target = "_self">
+    {% csrf_token %}
+    {{add_user_form.value.errors}}
+    <p>{{add_user_form.user.label_tag}} {{add_user_form.user}}  <button type="submit">Filter</button> </p>    
+    </form><br>
+{% endif %}
+{% if request.user.role == 1 %}
+    <form action="{% url 'book:add_book' %}", method = "post">
+    {% csrf_token %}
+      <button type="submit">ADD NEW BOOK</button>
+    </form>
+{% endif %}
+<ul>
+  {% for x in books %}
+    <li><a href="/book/{{ x.id }}">{{ x.name}}</a></li>
+  {% endfor %}
+</ul>
+
+</body>
+</html>

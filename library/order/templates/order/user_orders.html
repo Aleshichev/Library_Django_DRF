@@ -1,0 +1,19 @@
+{% extends 'base_order.html' %}
+{% block title %}user order{% endblock %}
+
+{% block content %}
+    <H1>THIS IS Order APP PAGE! CONGRATULATIONS!</H1>
+    <h2>My Orders:</h2>
+    <ul>
+
+    {% for order in orders %}
+        <li>
+            <p>Book: {{ order.book.name }} </p>
+                <p>Order created at : {{ order.created_at }} </p> 
+                    <p>Order plated end at: {{ order.plated_end_at }}</p> 
+                    <p>Order end at: -{{ order.end_at }}-</p> 
+    {% empty %}
+        <li>No orders yet.</li>
+    {% endfor %}
+
+{% endblock %}

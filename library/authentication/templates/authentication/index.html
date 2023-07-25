@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br>
+    {% if request.user.is_authenticated %}
+
+        {% if request.user.first_name != None %}
+            Hello, {{request.user.first_name}}
+        {% else %}
+            Hello, User
+        {% endif %}
+    
+        {% endif %}
+
+{% endblock %}

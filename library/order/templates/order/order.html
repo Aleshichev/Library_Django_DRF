@@ -1,0 +1,28 @@
+{% extends 'base_order.html' %}
+
+{% block title %}order{% endblock %}
+{% block content %}
+<H1>THIS IS Order APP PAGE! CONGRATULATIONS!</H1>
+{% if request.user.is_superuser %}
+<h2>All Orders:</h2>
+<ul>
+{% for order in orders %}
+    <li>
+        <p>User: {{ order.user.first_name }} - {{ order.user.last_name }} - {{ order.user.middle_name }} - id:{{ order.user.id }} </p> 
+        <p>Book: {{ order.book.name }} </p>
+            <p>Order created at : {{ order.created_at }} </p> 
+                <p>Order plated end at: {{ order.plated_end_at }}</p> 
+        {% if not order.end_at %}
+        <form action="{% url 'order:close_order' order.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Close Order</button>
+        </form>
+        {% else %}
+        <p>--- Order end at: -{{ order.end_at }} ---</p>
+        {% endif %}
+        <br>
+{% empty %}
+    <li>No orders yet.</li>
+{% endfor %}
+{% endif %}
+{% endblock %}
