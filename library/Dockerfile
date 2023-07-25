@@ -1,6 +1,5 @@
-# docker build . --tag library
-# docker run -p 8084:8000 library
-# http://localhost:8084/
+# docker build . --tag library 
+# docker-compose up --build
 
 FROM python:3.8
 
@@ -20,5 +19,3 @@ ADD .env.docker /library/.env
 ENV APP_NAME=LIBRARY
 
 RUN pip install --upgrade pip
-
-CMD gunicorn library.wsgi:application -b 0.0.0.0:8000

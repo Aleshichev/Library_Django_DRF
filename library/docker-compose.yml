@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:latest
+    container_name: library-db
+    environment:
+      POSTGRES_DB: postgres_2
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123
+    volumes:
+      - library_db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  web:
+    build: .
+    container_name: library-web
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    volumes:
+      - .:/library
+    env_file:
+      - .env.docker
+    command: sh -c "python manage.py makemigrations && python manage.py migrate && gunicorn library.wsgi:application -b 0.0.0.0:8000"
+
+volumes:
+  library_db_data:
