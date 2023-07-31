@@ -21,7 +21,7 @@ from api.v1.author_api.views import AuthorViewSet
 from api.v1.auth_api.views import UserViewSet
 
 from api.v1.book_api.views import BookApiList, BookRetrieveApiList, BookApiCreate
-from order.views import OrderViewSet, OrderUserViewSet
+from api.v1.order_api.views import OrderViewSet, OrderUserViewSet
 
 from rest_framework import routers
 
