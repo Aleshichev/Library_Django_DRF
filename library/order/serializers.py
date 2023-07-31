@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import Order
-from book.serializers import BookSerializer
-from authentication.serializers import CustomUserforOrderSerializer
+from api.v1.book_api.serializers import BookSerializer
+from api.v1.auth_api.serializers import CustomUserforOrderSerializer
 
 
 class OrderListSerializer(serializers.ModelSerializer):

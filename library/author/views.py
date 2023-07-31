@@ -5,9 +5,6 @@ from django.http import Http404, HttpResponseRedirect
 from django.urls import reverse
 from book.models import Book
 from .forms import AuthorForm
-from rest_framework import viewsets
-from .serializers import AuthorSerializer
-from rest_framework.permissions import IsAdminUser
 
 
 class AuthorPage(ListView):
@@ -50,9 +47,3 @@ def add_author(request):
     else:
         form = AuthorForm()
     return render(request, "author/author_create.html", {"form": form})
-
-
-class AuthorViewSet(viewsets.ModelViewSet):
-    queryset = Author.objects.all()
-    serializer_class = AuthorSerializer
-    permission_classes = (IsAdminUser,)

@@ -17,10 +17,10 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 from authentication.views import HomePageView
 
-from author.views import AuthorViewSet
-from authentication.views import UserViewSet
+from api.v1.author_api.views import AuthorViewSet
+from api.v1.auth_api.views import UserViewSet
 
-from book.views import BookApiList, BookRetrieveApiList, BookApiCreate
+from api.v1.book_api.views import BookApiList, BookRetrieveApiList, BookApiCreate
 from order.views import OrderViewSet, OrderUserViewSet
 
 from rest_framework import routers

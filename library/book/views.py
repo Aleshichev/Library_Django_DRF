@@ -1,4 +1,3 @@
-# Create your views here.
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from .models import Book
@@ -7,9 +6,6 @@ from authentication.models import CustomUser
 from order.models import Order
 from django.utils.datastructures import MultiValueDictKeyError
 from .forms import AddFormBook, FilterForm, AddUserForm, AddAuthorForm
-from .permissions import IsAdminOrReadOnly
-from rest_framework import generics
-from .serializers import BookSerializer, BookListSerializer
 
 
 @login_required
@@ -113,22 +109,3 @@ def add_book(request):
         template_name="book/add_book.html",
         context={"form": form, "authors": Author.objects.all()},
     )
-
-
-class BookRetrieveApiList(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Book.objects.all()
-    serializer_class = BookSerializer
-    permission_classes = (IsAdminOrReadOnly,)
-
-
-class BookApiList(generics.ListAPIView):
-    queryset = Book.objects.all()
-    serializer_class = BookListSerializer
-    permission_classes = (IsAdminOrReadOnly,)
-
-
-class BookApiCreate(generics.CreateAPIView):
-    queryset = Book.objects.all()
-    serializer_class = BookSerializer
-    permission_classes = (IsAdminOrReadOnly,)
-

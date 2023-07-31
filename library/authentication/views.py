@@ -7,9 +7,6 @@ from django.contrib.auth import authenticate, login, logout
 from django.db.utils import IntegrityError
 from order.models import Order
 from .forms import LoginForm, RegisterForm
-from .permissions import UserPermission
-from rest_framework import viewsets
-from .serializers import CustomUserSerializer
 
 
 class HomePageView(TemplateView):
@@ -106,9 +103,3 @@ def user_details(request, user_id):
     return render(
         request, "authentication/user_details.html", {"user": user, "orders": orders}
     )
-
-
-class UserViewSet(viewsets.ModelViewSet):
-    queryset = CustomUser.objects.all()
-    serializer_class = CustomUserSerializer
-    permission_classes = (UserPermission,)
