@@ -5,7 +5,8 @@ __pycache__/
 
 # C extensions
 *.so
-
+.dockerignore
+.env.docker
 # Distribution / packaging
 .Python
 build/
