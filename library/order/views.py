@@ -1,4 +1,5 @@
 from .models import Order
+from book.models import Book
 from django.shortcuts import render, redirect
 from datetime import datetime
 from django.contrib import messages
@@ -30,8 +31,11 @@ def create_order(request):
 
 def close_order(request, order_id):
     order = Order.get_by_id(order_id)
+    book = Book.objects.get(name=order.book.name)
 
     if order:
         order.update(end_at=datetime.now())
+        book.count += 1
+        book.save()
 
     return redirect("order:order")
