@@ -87,8 +87,7 @@ class Book(models.Model):
             book.authors = [].append(authors)
         book.save()
         return book
-        book.save()
-        return book
+
 
     def to_dict(self):
         """
