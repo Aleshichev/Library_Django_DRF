@@ -3,15 +3,7 @@ from django.db import models
 
 class Author(models.Model):
     """
-    This class represents an Author. \n
-    Attributes:
-    -----------
-    param name: Describes name of the author
-    type name: str max_length=20
-    param surname: Describes last name of the author
-    type surname: str max_length=20
-    param patronymic: Describes middle name of the author
-    type patronymic: str max_length=20
+    This class represents an Author.
     """
 
     name = models.CharField(blank=True, max_length=20)
@@ -22,15 +14,12 @@ class Author(models.Model):
     def __str__(self):
         """
         Magic method is redefined to show all information about Author.
-        :return: author id, author name, author surname, author patronymic
         """
         return f"id: {self.pk} --- {self.name} {self.surname} {self.patronymic} ---"
-        
 
     def __repr__(self):
         """
         This magic method is redefined to show class and id of Author object.
-        :return: class, id
         """
         return f"Author(id={self.pk})"
 
@@ -40,12 +29,9 @@ class Author(models.Model):
         :param author_id: SERIAL: the id of a Author to be found in the DB
         :return: author object or None if a user with such ID does not exist
         """
-        # return Author.objects.filter(id=author_id)
-        # return Author.get_by_id(author_id)
-        # return  Author.get_object_or_404()
         try:
             return Author.objects.get(pk=author_id)
-        except:
+        except Author.DoesNotExist:
             return None
 
     @staticmethod
@@ -59,19 +45,12 @@ class Author(models.Model):
             author = Author.objects.get(pk=author_id)
             author.delete()
             return True
-        except:
+        except Author.DoesNotExist:
             return False
 
     @staticmethod
     def create(name, surname, patronymic):
         """
-        param name: Describes name of the author
-        type name: str max_length=20
-        param surname: Describes surname of the author
-        type surname: str max_length=20
-        param patronymic: Describes patronymic of the author
-        type patronymic: str max_length=20
-        :return: a new author object which is also written into the DB
         """
         if (
             name
@@ -88,26 +67,13 @@ class Author(models.Model):
     def to_dict(self):
         """
         :return: author id, author name, author surname, author patronymic
-        :Example:
-        | {
-        |   'id': 8,
-        |   'name': 'fn',
-        |   'surname': 'mn',
-        |   'patronymic': 'ln',
-        | }
+
         """
-        # return self.__dict__
+        return self.__dict__()
 
     def update(self, name=None, surname=None, patronymic=None):
         """
-        Updates author in the database with the specified parameters.\n
-        param name: Describes name of the author
-        type name: str max_length=20
-        param surname: Describes surname of the author
-        type surname: str max_length=20
-        param patronymic: Describes patronymic of the author
-        type patronymic: str max_length=20
-        :return: None
+        Updates author in the database with the specified parameters.
         """
 
         if name and len(name) <= 20:
