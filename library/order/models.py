@@ -80,26 +80,28 @@ class Order(models.Model):
             return None
 
     def update(self, plated_end_at=None, end_at=None):
-        if plated_end_at != None:
+        if plated_end_at:
             self.plated_end_at = plated_end_at
-        if end_at != None:
+        if end_at:
             self.end_at = end_at
         self.save()
 
     @staticmethod
     def get_all():
-        return list(Order.objects.all())
+        list_order = list(Order.objects.all())
+        return list_order
 
     @staticmethod
     def get_not_returned_books():
-        return Order.objects.filter(end_at=None).values()
+        orders = Order.objects.filter(end_at=None)
+        orders_list = list(orders)
+        return orders_list
 
     @staticmethod
     def delete_by_id(order_id):
         try:
             a = Order.objects.get(pk=order_id)
-        except:
-            return False
-        else:
             a.delete()
             return True
+        except Order.DoesNotExist:
+            return False
