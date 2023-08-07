@@ -17,10 +17,6 @@ class RegisterPage(TemplateView):
     template_name = "authentication/register.html"
 
 
-class LoginPage(TemplateView):
-    template_name = "authentication/login.html"
-
-
 def user_page(request):
     if request.user.is_authenticated:
         return render(request, template_name="authentication/index.html")
@@ -71,7 +67,7 @@ def registration(request):
                         "error_message": "User with that email is already exist, please change email"
                     },
                 )
-            return redirect("authentication:login")
+            return redirect("authentication:user_page")
         else:
             return render(
                 request,
@@ -89,7 +85,7 @@ def registration(request):
 
 def out(request):
     logout(request)
-    return redirect("authentication:login")
+    return redirect("authentication:user_page")
 
 
 def users_page(request):

@@ -8,7 +8,6 @@ app_name = "authentication"
 urlpatterns = [
     path("", views.HomePageView.as_view(), name="index"),
     path("register/", views.registration, name="registration"),
-    path("login/", views.LoginPage.as_view(), name="login"),
     path("authentication/", views.user_page, name="user_page"),
     path("out/", views.out, name="log_out"),
     path("users/", deny_non_librarian(views.users_page), name="all_users"),

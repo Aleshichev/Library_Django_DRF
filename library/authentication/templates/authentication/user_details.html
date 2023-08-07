@@ -4,14 +4,16 @@
 
 <h2>Informathion about {{user.first_name}} {{user.last_name}}</h2>
 <body>
-    <p>Id: {{user.id}}</p>
-    <p>Role: {% if user.role is 0 %} visitor {% else %} librarian {% endif %}</p>
-    <p>Orders: {{ orders|length }} </p>
-    <p>First_name: {{user.first_name}}</p>
-    <p>Last_name: {{user.last_name}}</p>
-    <p>Middle_name: {{user.middle_name}}</p>
-    <p>Email: {{user.email}}</p>
-    <p>Created_at: {{user.created_at}}</p>
-    <p>Updated_at: {{user.updated_at}}</p>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Id: {{user.id}}</li>
+        <li class="list-group-item">Role: {% if user.role is 0 %} visitor {% else %} librarian {% endif %}</li>
+        <li class="list-group-item">Orders: {{ orders|length }}</li>
+        <li class="list-group-item">First_name: {{user.first_name}}</li>
+        <li class="list-group-item">Last_name: {{user.last_name}}</li>
+        <li class="list-group-item">Middle_name: {{user.middle_name}}</li>
+        <li class="list-group-item">Email: {{user.email}}</li>
+        <li class="list-group-item">Created_at: {{user.created_at}}</li>
+        <li class="list-group-item">Updated_at: {{user.updated_at}}</li>
+      </ul>
 </body>
 {% endblock %}

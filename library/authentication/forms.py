@@ -8,13 +8,13 @@ class LoginForm(forms.Form):
         label="Email",
         required=False,
         widget=forms.EmailInput(
-            attrs={"placeholder": "Enter Email", "required": "True"}
+            attrs={"placeholder": "Enter Email", "required": "True", 'class': 'form-control'}
         ),
     )
     password = forms.CharField(
         label="Password",
         widget=forms.PasswordInput(
-            attrs={"placeholder": "Enter Password"}
+            attrs={"placeholder": "Enter Password", 'class': 'form-control'}
         ),
     )
     
@@ -22,10 +22,8 @@ class LoginForm(forms.Form):
         cleaned_data = super().clean()
         email = cleaned_data.get('email')
         password = cleaned_data.get('password')
-
         if email and password:
             user = authenticate(email=email, password=password)
-            print(user)
             if user is None:
                 raise ValidationError('Invalid email or password')
         return cleaned_data
@@ -36,19 +34,22 @@ class RegisterForm(forms.Form):
         label="Email",
         required=False,
         widget=forms.EmailInput(
-            attrs={"placeholder": "Enter Email", "required": "True"}
+            attrs={"placeholder": "Enter Email", "required": "True", 'class': 'form-control'}
         ),
     )
     password = forms.CharField(
         label="Password",
         widget=forms.PasswordInput(
-            attrs={"placeholder": "Enter Password"}
+            attrs={"placeholder": "Enter Password", 'class': 'form-control'}
         ),
     )
     confirm_password = forms.CharField(
-        widget=forms.PasswordInput(), label="Confirm Password"
+        widget=forms.PasswordInput(attrs={"placeholder": "Confirm Password", 'class': 'form-control'}), label="Confirm Password"
     )
-    role = forms.ChoiceField(choices=[("0", "Visitor"), ("1", "Librarian")])
+    role = forms.ChoiceField(
+        choices=[("0", "Visitor"), ("1", "Librarian")],
+        widget=forms.Select(attrs={'class': 'form-select'}),
+        )
 
     def clean(self):
         cleaned_data = super().clean()

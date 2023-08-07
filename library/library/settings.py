@@ -46,7 +46,9 @@ INSTALLED_APPS = [
     "author",
     "book",
     "order",
+    'crispy_forms',
 ]
+
 
 AUTH_USER_MODEL = "authentication.CustomUser"
 
@@ -195,3 +197,5 @@ REST_FRAMEWORK = {
     ],
     "DEFAULT_PAGINATION_CLASS": "library.pagination.CustomPagination",
 }
+
+CRISPY_TEMPLATE_PACK = 'bootstrap5'

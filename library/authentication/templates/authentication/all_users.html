@@ -3,15 +3,15 @@
 {% block content %}
     <h2>All Users:</h2>
 
-<table>
+<table class="table">
     <tr>
-        <th>Id</th>
-        <th>Last Name</th>
-        <th>First Name</th>
-        <th>Middle Name</th>
-        <th>Email</th>
-        <th>Role</th>
-        <th>Details</th>
+        <th scope="col">Id</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Middle Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Role</th>
+        <th scope="col">Details</th>
     </tr>
 
     {% for user in users %}
@@ -26,9 +26,6 @@
     </tr>
     {% endfor %}
 </table>
-<form>
-    <button formaction="{% url 'index' %}">Back</button>
-</form>
 {% endblock %}
 
 
