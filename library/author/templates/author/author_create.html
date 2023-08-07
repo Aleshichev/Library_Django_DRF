@@ -1,15 +1,38 @@
- <!DOCTYPE html>
-<html>
-<head>
-  <title>Add Author</title>
-</head>
+{% extends 'base.html' %}
+{% block title %}Create author{% endblock %}
+{% block content %}
 <body>
-  <h2>Add Author</h2>
+  <div class="p-3 --bs-info-text-emphasis">
+  <h3>Add Author</h3>
   <form method="POST">
-    {% csrf_token %}
-    {{form}}
-    <button type="submit">Submit</button>
+    {% csrf_token %}{{ form.non_field_errors }}
+    <div class="mb-2">
+      <label class="col-form-label">Name</label>
+      <div class="d-flex">
+        <div class="col-sm-3">{{form.name}} {{form.name.errors}}</div>
+      </div>
+    </div>
+    <div class="mb-2">
+      <label class="col-form-label">Surname</label>
+      <div class="d-flex">
+        <div class="col-sm-3">{{form.surname}} {{form.surname.errors}}</div>
+      </div>
+    </div>
+    <div class="mb-2">
+      <label class="col-form-label">Patronymic</label>
+      <div class="d-flex">
+        <div class="col-sm-3">{{form.patronymic}} {{form.patronymic.errors}}</div>
+      </div>
+    </div>
+
+
+    <div class="mb-2">
+    <button type="submit" class="btn btn-success">Submit</button>
+    </div>
+
   </form>
+  </div>
 </body>
+{% endblock %}
 
 </html>
