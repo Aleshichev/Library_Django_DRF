@@ -1,21 +1,27 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Author_details</title>
-</head>
+{% extends 'base.html' %}
+{% block title %}Author_details{% endblock %}
+{% block content %}
 <body>
-<h1>Information about {{author.surname}} {{author.name}} {{author.patronymic}} books:</h1>
+    <div class="p-3 --bs-info-text-emphasis ">
+<h3>Information about {{author.surname}} {{author.name}} {{author.patronymic}} books:</h1>
     {% for book in books %}
-        <li>Title: {{book.name}}  </li>
-        <p>Description: {{book.description}}</p>
-    {% empty %}
-        No books yet.<br>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item"><strong>Title:</strong> {{book.name}}  </li>
+        <li class="list-group-item"><strong>Description:</strong> {{book.description}}</li>
+        <li class="list-group-item"></li>
+    </ul>
+        {% empty %}
+        <div class="mb-3">
+        No books yet.
+        </div>
         <form action="{% url 'author:remove_author' author.id %}" method="post">
             {% csrf_token %}
-            <button>Remove author</button>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-success">Remove author</button>
+        </div>
         </form>
     {% endfor %}
+</div>
 </body>
 </html>
+{% endblock %}

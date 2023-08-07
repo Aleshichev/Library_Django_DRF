@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}User_details{% endblock %}
 {% block content %}
-
+<div class="p-3 --bs-info-text-emphasis ">
 <h2>Informathion about {{user.first_name}} {{user.last_name}}</h2>
 <body>
     <ul class="list-group list-group-flush">
@@ -16,4 +16,5 @@
         <li class="list-group-item">Updated_at: {{user.updated_at}}</li>
       </ul>
 </body>
+</div>
 {% endblock %}
