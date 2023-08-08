@@ -10,6 +10,11 @@
     <div class="p-3 --bs-info-text-emphasis">
 <h2>Authors:</h2>
 <div class="mb-3">
+    <form action="{% url 'author:add_author' %}">
+        <button type="submit" class="btn btn-success">Add Author</button>
+    </form>
+    </div>
+<div class="mb-3">
 <ul class="list-group list-group-flush">
 {% for author in authors %}
     <li class="list-group-item">{{ author.surname }} {{ author.name }} {{ author.patronymic }} -
@@ -18,11 +23,6 @@
     <li>No authors yet.</li>
 {% endfor %}
 </ul>
-</div>
-<div class="mb-3">
-<form action="{% url 'author:add_author' %}">
-    <button type="submit" class="btn btn-success">Add Author</button>
-</form>
 </div>
 </div>
 </body>

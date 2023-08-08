@@ -13,6 +13,7 @@ class AddFormBook(forms.ModelForm):
                 attrs={
                     "class": "form-input",
                     "placeholder": "Enter Name",
+                    'class': 'form-control'
                 }
             ),
             "description": forms.Textarea(
