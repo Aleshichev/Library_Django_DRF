@@ -2,26 +2,29 @@
 {% block title %}user order{% endblock %}
 
 {% block content %}
-{% if request.user.is_superuser %}
-<div class="p-3 --bs-info-text-emphasis">
 
-<div class="mb-3">
+<div class="p-3 --bs-info-text-emphasis">
+    <div class="mb-3">
+
+    {% if request.user.is_superuser %}
+
 <a class="button me-md-4" href="{% url 'order:order' %}">  All orders </a>
 {% endif %}
 <a class="button me-md-4" href="{% url 'order:create_order' %}"> Create order</a>
 <a class="button me-md-4" href="{% url 'order:user_orders' %}"> My orders </a>
-</div>
-    <h2>My Orders:</h2>
-    <ul>
+    </div>
 
-    {% for order in orders %}
-        <li>
-            <p>Book: {{ order.book.name }} </p>
-                <p>Order created at : {{ order.created_at }} </p> 
-                    <p>Order plated end at: {{ order.plated_end_at }}</p> 
-                    <p>Order end at: -{{ order.end_at }}-</p> 
-    {% empty %}
-        <li>No orders yet.</li>
-    {% endfor %}
+        <h2>My Orders:</h2>
+        <ul>
+
+        {% for order in orders %}
+            <li>
+                <p>Book: {{ order.book.name }} </p>
+                    <p>Order created at : {{ order.created_at }} </p> 
+                        <p>Order plated end at: {{ order.plated_end_at }}</p> 
+                        <p>Order end at: -{{ order.end_at }}-</p> 
+        {% empty %}
+            <li>No orders yet.</li>
+        {% endfor %}
         </div>
 {% endblock %}

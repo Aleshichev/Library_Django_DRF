@@ -3,13 +3,15 @@
 {% block content %}
 <body>
   <div class="p-3 --bs-info-text-emphasis ">
-    {% if request.user.is_superuser %}
     <div class="mb-3">
+      {% if request.user.is_superuser %}
     <a class="button me-md-4" href="{% url 'order:order' %}">  All orders </a>
     {% endif %}
     <a class="button me-md-4" href="{% url 'order:create_order' %}"> Create order</a>
     <a class="button me-md-4" href="{% url 'order:user_orders' %}"> My orders </a>
     </div>
+
+
   <h2>Create Order:</h2>
   {% if messages %}
     <ul class="messages">
