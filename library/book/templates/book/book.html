@@ -1,31 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{book.name}}</title>
-</head>
+{% extends 'base.html' %}
+{% block title %}Book{% endblock %}
+{% block content %}
 <body>
-<p> <a href="/home/out"> Log out</a></p>
-<p> <a href="/home"> Home </a></p>
-<h1>Information about book:</h1>
-<p>Name: {{book.name}}</p>
-<p>Author: {% for elem in book_authors %}
-            {{elem.name}} {{elem.surname}} {{elem.patronymic}},
-            {% endfor %} 
+  <div class="p-3 --bs-info-text-emphasis ">
+<h2>Information about book:</h2>
+<ul class="list-group list-group-flush">
+  <li class="list-group-item">Name: {{book.name}}</li>
+  <li class="list-group-item">Author: {% for elem in book_authors %}
+    {{elem.name}} {{elem.surname}} {{elem.patronymic}},
+    {% endfor %} </li>
+  <li class="list-group-item">Count: {{book.count}}</li>
+  <li class="list-group-item">Descriptions:{{book.description}}</li>
+</ul>
+
 {% if request.user.role == 1 %}
   <form action="{% url 'book:book_detail' book.id %}" method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">ADD</button>
+    <div class="mb-2">
+      <label class="col-form-label">Add author:</label>
+      <div class="d-flex">
+        <div class="col-sm-3">
+          {{form.author}}
+        </div>
+      </div>
+    </div>
+    <div class="mb-2">
+    <button type="submit" class="btn btn-success">Add</button>
+    </div>
   </form>
 {% endif %}
-</p>
-<p>Count: {{book.count}}</p>
-<p>Descriptions: </br>
-{{book.description}}</p>
-</br>
-
-<p> Return back to the <a href="/book">book</a> list.</p>
-
+  </div>
 </body>
 </html>
+{% endblock %}

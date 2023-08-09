@@ -1,35 +1,66 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{book.name}}</title>
-</head>
+{% extends 'base.html' %}
+{% block title %}Add book{% endblock %}
+{% block content %}
 <body>
-<p> <a href="/home/out"> Log out</a></p>
-<p> <a href="/home"> Home </a></p>
-<h1>Create new book:</h1>
-
-
+  <div class="p-3 --bs-info-text-emphasis ">
+<h2>New book:</h2>
 {% if request.user.role == 1 %}
 <form method="post" action="{% url 'book:add_book' %}">
-  {% csrf_token %}
-  {{ form.non_field_errors }}
-  <p>{{form.name.label_tag}} {{form.name}}</p>
-  {{form.name.errors}}
-  <p>{{form.description.label_tag}} {{form.description}}</p>
-  {{form.description.errors}}
-  <p>{{form.count.label_tag}} {{form.count}}</p>
-  <p>{{form.authors.label_tag}} {{form.authors}}</p>
-  <p>{{form.year_of_publication.label_tag}} {{form.year_of_publication}}</p>
-  {{form.year_of_publication.errors}}
-  <p>{{form.date_of_issue.label_tag}} {{form.date_of_issue}}</p>
-  {{form.date_of_issue.errors}}
-
-   <button type="submit">CREATE</button>
+  {% csrf_token %}{{ form.non_field_errors }}
+  <div class="mb-2">
+    <label class="col-form-label">{{form.name.label_tag}}</label>
+    <div class="d-flex">
+      <div class="col-sm-3">
+        {{form.name}}{{form.name.errors}}
+      </div>
+    </div>
+  </div>
+  <div class="mb-2">
+    <label class="col-form-label">{{form.description.label_tag}}</label>
+    <div class="d-flex">
+      <div class="col-sm-3"> 
+        {{form.description}} {{form.description.errors}}
+      </div>
+    </div>
+  </div>
+  <div class="mb-2">
+    <label class="col-form-label">{{form.count.label_tag}}</label>
+    <div class="d-flex">
+      <div class="col-sm-3"> 
+        {{form.count}}
+      </div>
+    </div>
+  </div>
+  <div class="mb-2">
+    <label class="col-form-label">{{form.authors.label_tag}}</label>
+    <div class="d-flex">
+      <div class="col-sm-3">
+        {{form.authors}}
+      </div>
+    </div>
+  </div>
+  <div class="mb-2">
+    <label class="col-form-label">{{form.year_of_publication.label_tag}}</label>
+    <div class="d-flex">
+      <div class="col-sm-3">
+        {{form.year_of_publication}} {{form.year_of_publication.errors}}
+      </div>
+    </div>
+  </div>
+  <div class="mb-2">
+    <label class="col-form-label">{{form.date_of_issue.label_tag}}</label>
+    <div class="d-flex">
+      <div class="col-sm-3">
+        {{form.date_of_issue}}{{form.date_of_issue.errors}}
+      </div>
+    </div>
+  </div>
+  <div class="mb-2">
+  <button type="submit" class="btn btn-success">Create</button>
+  </div>
 </form>
 {% endif %}
-
-<p> Return back to the <a href="/book">book</a> list.</p>
-
+</div>
 </body>
 </html>
+{% endblock %}

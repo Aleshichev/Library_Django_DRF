@@ -13,7 +13,7 @@ class AddFormBook(forms.ModelForm):
                 attrs={
                     "class": "form-input",
                     "placeholder": "Enter Name",
-                    'class': 'form-control'
+                    "class": "form-control",
                 }
             ),
             "description": forms.Textarea(
@@ -21,12 +21,14 @@ class AddFormBook(forms.ModelForm):
                     "cols": 30,
                     "rows": 2,
                     "placeholder": "Write a description",
+                    "class": "form-control",
                 }
             ),
             "count": forms.NumberInput(attrs={"class": "form-control", "default": 10}),
             "authors": forms.SelectMultiple(attrs={"size": 3, "class": "form-control"}),
             "year_of_publication": forms.Select(
                 choices=[(year, year) for year in range(1900, 2024)],
+                attrs={"class": "form-control"}
             ),
             "date_of_issue": forms.DateInput(
                 attrs={"class": "form-control", "type": "date"}
@@ -62,5 +64,7 @@ class AddUserForm(forms.Form):
 
 class AddAuthorForm(forms.Form):
     author = forms.ModelChoiceField(
-        queryset=Author.objects.all(), label="Choose an author"
+        queryset=Author.objects.all(),
+        label="Choose an author",
+        widget=forms.Select(attrs={"class": "form-control"}),
     )
