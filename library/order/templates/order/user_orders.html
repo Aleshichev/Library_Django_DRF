@@ -1,8 +1,16 @@
-{% extends 'base_order.html' %}
+{% extends 'base.html' %}
 {% block title %}user order{% endblock %}
 
 {% block content %}
-    <H1>THIS IS Order APP PAGE! CONGRATULATIONS!</H1>
+{% if request.user.is_superuser %}
+<div class="p-3 --bs-info-text-emphasis">
+
+<div class="mb-3">
+<a class="button me-md-4" href="{% url 'order:order' %}">  All orders </a>
+{% endif %}
+<a class="button me-md-4" href="{% url 'order:create_order' %}"> Create order</a>
+<a class="button me-md-4" href="{% url 'order:user_orders' %}"> My orders </a>
+</div>
     <h2>My Orders:</h2>
     <ul>
 
@@ -15,5 +23,5 @@
     {% empty %}
         <li>No orders yet.</li>
     {% endfor %}
-
+        </div>
 {% endblock %}

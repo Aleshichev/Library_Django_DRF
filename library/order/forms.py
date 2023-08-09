@@ -3,11 +3,16 @@ from .models import Order
 
 
 class OrderForm(forms.ModelForm):
-    plated_end_at = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}))
+    plated_end_at = forms.DateField(
+        widget=forms.DateInput(attrs={"type": "date", "class": "form-control"})
+    )
 
     class Meta:
         model = Order
         fields = ["book", "plated_end_at"]
+        widgets = {
+            "book": forms.Select(attrs={"class": "form-control"}),
+        }
 
     def clean(self):
         cleaned_data = super().clean()

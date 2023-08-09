@@ -1,10 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Create Order</title>
-</head>
+{% extends 'base.html' %}
+{% block title %}Create order{% endblock %}
+{% block content %}
 <body>
-  <h2>Create Order</h2>
+  <div class="p-3 --bs-info-text-emphasis ">
+    {% if request.user.is_superuser %}
+    <div class="mb-3">
+    <a class="button me-md-4" href="{% url 'order:order' %}">  All orders </a>
+    {% endif %}
+    <a class="button me-md-4" href="{% url 'order:create_order' %}"> Create order</a>
+    <a class="button me-md-4" href="{% url 'order:user_orders' %}"> My orders </a>
+    </div>
+  <h2>Create Order:</h2>
   {% if messages %}
     <ul class="messages">
       {% for message in messages %}
@@ -14,9 +20,28 @@
   {% endif %}
   <form method="POST">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Create Order</button>
+    <div class="mb-2">
+    {{ form.non_field_errors }}
+  </div>
+    <div class="mb-2">
+      <label class="col-form-label">{{form.book.label_tag}}</label>
+      <div class="d-flex">
+        <div class="col-sm-3">
+          {{form.book}}{{form.book.errors}}
+        </div>
+      </div>
+    </div>
+    <div class="mb-2">
+      <label class="col-form-label">{{form.plated_end_at.label_tag}}</label>
+      <div class="d-flex">
+        <div class="col-sm-3"> 
+          {{form.plated_end_at}} {{form.plated_end_at.errors}}
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-success">Create Order</button>
   </form>
-  <a href="{% url 'index' %}" class="button">Back to Home</a>
+  </div>
 </body>
 </html>
+{% endblock %}

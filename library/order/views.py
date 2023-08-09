@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from datetime import datetime
 from django.contrib import messages
 from .forms import OrderForm
+from django.core.exceptions import ValidationError
 
 
 def order_list(request):
@@ -23,6 +24,8 @@ def create_order(request):
         if form.is_valid():
             form.save_order(request.user)
             messages.success(request, "Order placed!")
+        else: 
+            print(form.errors)
     else:
         form = OrderForm()
 

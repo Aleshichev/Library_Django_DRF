@@ -1,8 +1,16 @@
-{% extends 'base_order.html' %}
+{% extends 'base.html' %}
 
 {% block title %}order{% endblock %}
 {% block content %}
-<H1>THIS IS Order APP PAGE! CONGRATULATIONS!</H1>
+<div class="p-3 --bs-info-text-emphasis ">
+
+{% if request.user.is_superuser %}
+<div class="mb-3">
+<a class="button me-md-4" href="{% url 'order:order' %}">  All orders </a>
+{% endif %}
+<a class="button me-md-4" href="{% url 'order:create_order' %}"> Create order</a>
+<a class="button me-md-4" href="{% url 'order:user_orders' %}"> My orders </a>
+</div>
 {% if request.user.is_superuser %}
 <h2>All Orders:</h2>
 <ul>
@@ -15,7 +23,7 @@
         {% if not order.end_at %}
         <form action="{% url 'order:close_order' order.id %}" method="post">
             {% csrf_token %}
-            <button type="submit">Close Order</button>
+            <button type="submit" class="btn btn-success" >Close Order</button>
         </form>
         {% else %}
         <p>--- Order end at: -{{ order.end_at }} ---</p>
@@ -25,4 +33,5 @@
     <li>No orders yet.</li>
 {% endfor %}
 {% endif %}
+    </div>
 {% endblock %}

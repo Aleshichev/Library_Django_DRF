@@ -1,22 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{% endblock %}</title>
-</head>
+{% extends 'base.html' %}
+{% block title %}Add book{% endblock %}
+{% block content %}
 <body>
-    {% if request.user.is_authenticated %}
-   
-    <a class="button" href="/home/out">Log out</a>
-    <br>
-    <br>
-    <a href="{% url 'authentication:index' %}"> Home </a>
-    <br> 
-    {% else %}
-        <a class="button" href="{% url 'authentication:login' %}">Log in</a>
-        <a class="button" href="/home/register">Register</a>
-    {% endif %}
     {% if request.user.is_superuser %}
     <br>
     <a href="{% url 'order:order' %}"> All orders </a>
@@ -38,3 +23,4 @@
     </main>
 </body>
 </html>
+{% endblock %}
